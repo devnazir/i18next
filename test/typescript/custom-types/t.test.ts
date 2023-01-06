@@ -1,4 +1,4 @@
-import i18next, { t, TFunction } from 'i18next';
+import i18next, { t, TFunction, TFuncKey } from 'i18next';
 
 function defaultNamespaceUsage(t: TFunction) {
   t('bar');
@@ -24,6 +24,18 @@ function arrayNamespace(t: TFunction<['custom', 'alternate']>) {
 
 // @ts-expect-error
 function expectErrorWhenNamespaceDoesNotExist(t: TFunction<'foo'>) {}
+
+function expectTFunctionToReturnString(t: TFunction<'alternate'>) {
+  const alternateTranslationKey1: TFuncKey<'alternate'> = 'baz';
+  t(alternateTranslationKey1).trim();
+  const alternateTranslationKey2: TFuncKey<'alternate'> = 'foobar.barfoo';
+  t(alternateTranslationKey2).trim();
+
+  const alternateTranslationKeys: Array<TFuncKey<'alternate'>> = ['baz', 'foobar.barfoo'];
+  // const locatedInValues = alternateTranslationKeys
+  //   .map((value) => t(value, {}))
+  //   .map((translation) => translation.trim()); // ???WHY??? Property 'trim' does not exist on type '{ bing: "boop"; }'
+}
 
 function expectErrorWhenKeyNotInNamespace(t: TFunction<'alternate'>) {
   // @ts-expect-error

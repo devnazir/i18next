@@ -997,7 +997,7 @@ export interface TFunction<
     TInterpolationMap extends object = StringMap,
   >(
     key: TKeys | TKeys[],
-    defaultValue?: string,
+    defaultValue: string,
     options?: TOptions<TInterpolationMap> | string,
   ): TFuncReturn<ActualNS, TKeys, TDefaultResult, TKPrefix>;
   <
@@ -1494,6 +1494,7 @@ export default i18next;
 
 export const createInstance: i18n['createInstance'];
 
+export const dir: i18n['dir'];
 export const init: i18n['init'];
 export const loadResources: i18n['loadResources'];
 export const reloadResources: i18n['reloadResources'];

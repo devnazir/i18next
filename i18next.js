@@ -1554,6 +1554,7 @@
         while (match = this.nestingRegexp.exec(str)) {
           var formatters = [];
           clonedOptions = _objectSpread$3({}, options);
+          clonedOptions = clonedOptions.replace && typeof clonedOptions.replace !== 'string' ? clonedOptions.replace : clonedOptions;
           clonedOptions.applyPostProcessor = false;
           delete clonedOptions.defaultValue;
           var doReduce = false;
